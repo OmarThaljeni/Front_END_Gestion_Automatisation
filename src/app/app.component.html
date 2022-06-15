@@ -1,0 +1,151 @@
+<mat-toolbar color="primary" class="header" *ngIf="!this.authService.isLoggedIn()">
+  <div class="logodiv"> <img src="../assets/logo.jpg"> CNI</div>
+</mat-toolbar>
+
+<mat-toolbar color="primary" class="header" *ngIf="this.authService.isLoggedIn()">
+  <div class="logodiv"> <img src="../assets/logo.jpg"> CNI</div>
+  <span class="nav-tool-items">
+    <mat-icon (click)="logout()">logout</mat-icon>
+    <!--     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+ -->
+  </span>
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [fixedInViewport]="true" [fixedTopGap]
+    [opened]="this.authService.isLoggedIn()">
+    
+    <mat-nav-list>
+      <a mat-list-item routerLink="/ISIPFE/acceuil">
+        <mat-icon>home</mat-icon> Home
+      </a>
+
+    </mat-nav-list>
+
+    <mat-nav-list *ngIf="this.authService.getRoles() == 'ROLE_ADMIN'">
+      <a mat-list-item routerLink="/ISIPFE/liste-users"  >
+        <mat-icon>supervised_user_circle</mat-icon> Gestion des utilisateurs
+      </a>
+
+    </mat-nav-list>
+
+
+    <mat-nav-list *ngIf="this.authService.getRoles() == 'ROLE_TECK'">
+      <a mat-list-item routerLink="/ISIPFE/liste-clients" >
+        <mat-icon>people</mat-icon> Gestion des clients
+      </a>
+    </mat-nav-list>
+
+
+    <mat-nav-list *ngIf="this.authService.getRoles() == 'ROLE_ADMIN' || this.authService.getRoles() == 'ROLE_TECK' ">
+      <a mat-list-item routerLink="/ISIPFE/traiter-demandes-clients">
+        <mat-icon>insert_invitation</mat-icon> Gestion des demandes
+      </a>
+    </mat-nav-list>
+
+    <mat-nav-list *ngIf="this.authService.getRoles() == 'ROLE_CLIENT'">
+      <a mat-list-item routerLink="/ISIPFE/liste-demande_clients">
+        <mat-icon>insert_invitation</mat-icon> Menu client
+      </a>
+    </mat-nav-list>
+
+
+    <mat-nav-list  *ngIf="this.authService.getRoles() == 'ROLE_ADMIN'">
+      <a mat-list-item routerLink="/ISIPFE/generate-stats">
+        <mat-icon>bar_chart</mat-icon> Statistiques
+      </a>
+    </mat-nav-list>
+
+
+    <mat-nav-list  *ngIf="this.authService.getRoles() == 'ROLE_ADMIN'">
+      <mat-expansion-panel class="navliste">
+        <mat-expansion-panel-header class="navliste">
+          <mat-panel-title>
+            <mat-icon>settings </mat-icon>
+            Paramétre
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item routerLink="/ISIPFE/liste-plateFormeLogicielle">
+            <mat-icon>laptop</mat-icon>PlateForme Logicielle
+          </mat-list-item>
+          <mat-list-item routerLink="/ISIPFE/liste-produitApplication">
+            <mat-icon>business</mat-icon>Produit application
+          </mat-list-item>
+          <mat-list-item routerLink="/ISIPFE/liste-systemeMachine">
+            <mat-icon>laptop</mat-icon>Systéme machine
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+
+
+
+    <mat-nav-list *ngIf="this.authService.getRoles() == 'ROLE_TECK'">
+      <mat-expansion-panel class="navliste">
+        <mat-expansion-panel-header class="navliste">
+          <mat-panel-title>
+            <mat-icon>local_laundry_service </mat-icon>
+            Gestion des services
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item routerLink="ISIPFE/liste-iaas">
+            <mat-icon>cloud</mat-icon>IAAS
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>business</mat-icon>SAAS
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>laptop</mat-icon>PAAS
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+
+
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+    <section class="mat-typography title-group">
+      <router-outlet></router-outlet>
+      <!-- <mat-divider></mat-divider>-->
+    </section>
+
+    <!--<mat-card class="my-alternate-theme">
+      My Alternate Themes: &nbsp; &nbsp; &nbsp;
+      <button mat-raised-button color="primary">
+
+
+
+
+
+        
+        Primary
+      </button>
+      <button mat-raised-button color="accent">
+        Accent
+      </button>
+      <button mat-raised-button color="warn">
+        Warning
+      </button>
+    </mat-card> -->
+
+    <!-- <div class="productCards">
+      <mat-grid-list cols="4" rowHeight="200px">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">2
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">3
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">4
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div> -->
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

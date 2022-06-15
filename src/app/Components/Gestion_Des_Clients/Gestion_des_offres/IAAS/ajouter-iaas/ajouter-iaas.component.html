@@ -1,0 +1,74 @@
+<form [formGroup]="form" class="normal-form">
+
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>Création d'un service IAAS</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" (click)="onClose()" mat-stroked-button tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+
+    <mat-grid-tile class="matg1" [colspan]="2" [rowspan]="2">
+      <div class="modal" style="font-size: 16px">
+
+
+
+        <mat-form-field width="10px" class="classeType">
+          <mat-label>Type</mat-label>
+          <select matNativeControl formControlName="type" [(value)]="selected">
+            <option *ngFor="let type of TypeIAAS">{{type.type}}</option>
+          </select>
+        </mat-form-field>
+
+        <mat-form-field width="10px" class="classeType">
+          <mat-label>OS</mat-label>
+          <select matNativeControl formControlName="os" [(value)]="selecedOS">
+            <option *ngFor="let type of TypeOs">{{type.type}}</option>
+          </select>
+        </mat-form-field>
+
+
+        <mat-form-field width="10px" class="classeType">
+          <mat-label>RAM</mat-label>
+          <select matNativeControl formControlName="ram" [(value)]="selectedRam">
+            <option *ngFor="let type of TypeRam">{{type.type}}</option>
+          </select>
+        </mat-form-field>
+
+       
+        <mat-form-field width="10px" class="classeType">
+          <mat-label>CPU</mat-label>
+          <select matNativeControl formControlName="cpu" [(value)]="selectedCPU">
+            <option *ngFor="let type of TypeCPU">{{type.type}}</option>
+          </select>
+        </mat-form-field>
+
+
+        <mat-form-field width="10px" class="classeType">
+          <mat-label>Disque</mat-label>
+          <select matNativeControl formControlName="disque" [(value)]="selectedDisque">
+            <option *ngFor="let type of TypeDisque">{{type.type}}</option>
+          </select>
+        </mat-form-field>
+
+
+
+        <button mat-raised-button (click)="ajouterIAAS()">
+          <mat-icon>save</mat-icon> Enregistrer
+        </button>
+
+      </div>
+
+
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+</form>

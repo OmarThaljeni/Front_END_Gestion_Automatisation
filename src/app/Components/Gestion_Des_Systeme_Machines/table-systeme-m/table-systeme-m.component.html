@@ -1,0 +1,69 @@
+
+<h1> Gestion des systéme machines</h1>
+<div class="search-div">
+  <button mat-raised-button (click)="AjouterSystemeMachine()">
+    <mat-icon>add</mat-icon>Ajouter
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+   <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
+
+
+  <ng-container matColumnDef="osSM">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> OS </th>
+    <td mat-cell *matCellDef="let element"> {{element.osSM}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="versionSM">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> version </th>
+    <td mat-cell *matCellDef="let element"> {{element.versionSM}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="adresseIPSM">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse IP </th>
+    <td mat-cell *matCellDef="let element"> {{element.adresseIPSM}} </td>
+  </ng-container>
+
+    
+  <ng-container matColumnDef="ramSM">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ram</th>
+    <td mat-cell *matCellDef="let element"> {{element.ramSM}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cpuSM">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> CPU </th>
+    <td mat-cell *matCellDef="let element"> {{element.cpuSM}} </td>
+  </ng-container>
+
+  
+
+  <ng-container matColumnDef="disqueSM">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Disque </th>
+    <td mat-cell *matCellDef="let element"> {{element.disqueSM}} </td>
+  </ng-container>
+
+  
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button (click)="ModifierSystemeM(row)" class="update" mat-icon-button ><mat-icon>system_update_alt</mat-icon></button>
+      <button (click)="SupprimerSystemeM(row)" class="matdel" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+    </mat-cell>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

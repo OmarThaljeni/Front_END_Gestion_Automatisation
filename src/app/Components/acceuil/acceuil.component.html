@@ -1,0 +1,28 @@
+<h1 style="text-align: center;"> <strong>Centre national d'informatique </strong></h1>
+
+<br>
+<hr>
+<br>
+
+
+
+<div class="tp-wrapper">
+    <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+        <div class="tp-box__side tp-box__front">
+
+            Le Centre National de l’Informatique est un établissement public à caractère non administratif doté de la
+            personnalité civile et de l’autonomie financière. Le CNI est un organisme placé sous la tutelle du Ministre
+            des Technologies de la Communication, et opérant dans les domaines du secteur de l’informatique et des
+            technologies de la communication et certifié ISO 9001version 2015.
+            <br>
+            <button mat-raised-button (click)="lireLaSuite()">
+                <mat-icon>remove_red_eye</mat-icon> Lire La suite
+              </button>
+                </div>
+        <div class="tp-box__side tp-box__back">
+
+<img src="../../../assets/cni_tunisie.jpg" width="750px" height="700px">
+
+        </div>
+    </div>
+</div>

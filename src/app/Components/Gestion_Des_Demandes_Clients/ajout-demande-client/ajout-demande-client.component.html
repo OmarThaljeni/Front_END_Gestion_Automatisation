@@ -1,0 +1,169 @@
+<form [formGroup]="form" class="normal-form">
+
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>Création d'un nouveau demande</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" (click)="onClose()" mat-stroked-button tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+
+    <mat-grid-tile class="matg1" [colspan]="2" [rowspan]="2">
+      <div class="modal" style="font-size: 16px">
+
+    
+
+        <mat-form-field width="10px" class="classService">
+          <mat-label>Type Service</mat-label>
+          
+          <select matNativeControl formControlName="type" [(ngModel)]="selectedService">
+            <option value="" disabled selected="selected">Service</option>
+
+            <option *ngFor="let type of TypeDemande">{{type.type}}</option>
+          </select>
+        </mat-form-field>
+
+        <hr>
+        <br>
+        <div *ngIf="selectedService=='IAAS' || selectedService=='SAAS' ||selectedService=='PAAS' ">
+
+        <mat-form-field class="classeTel">
+          <mat-label>Date de début*</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date_Debut">
+          <mat-datepicker-toggle matSuffix [for]="picker" class="maticon"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="classeTel">
+          <mat-label>Date de fin*</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="date_Fin">
+          <mat-datepicker-toggle matSuffix [for]="picker1" class="maticon"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+       
+        <mat-form-field class="classeTel">
+          <mat-label>Plateforme logicielle</mat-label>
+          <mat-select [formControl]="plateFormeLogicielle" multiple>
+            <mat-select-trigger>
+              {{plateFormeLogicielle.value ? plateFormeLogicielle.value[0]?.nomPFA : ''}}
+              <span *ngIf="plateFormeLogicielle.value?.length > 1" class="example-additional-selection">
+                (+{{plateFormeLogicielle.value.length - 1}} {{plateFormeLogicielle.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let plateFormeLogicielle of plateFormeLogicielleLists" [value]="plateFormeLogicielle">{{plateFormeLogicielle.nomPFA}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        
+        <mat-form-field class="classeTel">
+          <mat-label>Produit application</mat-label>
+          <mat-select [formControl]="produitApplicationA" multiple>
+            <mat-select-trigger>
+              {{produitApplicationA.value ? produitApplicationA.value[0]?.nomAPP : ''}}
+              <span *ngIf="produitApplicationA.value?.length > 1" class="example-additional-selection">
+                (+{{produitApplicationA.value.length - 1}} {{produitApplicationA.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let produitApplication of ProduitApplicationLists" [value]="produitApplication">{{produitApplication.nomAPP}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field width="10px" class="classeTel">
+          <mat-label>Systéme machine</mat-label>
+          <select matNativeControl  [(ngModel)]="selectedOS" [ngModelOptions]="{standalone: true}"  >
+            <option *ngFor="let os of SystemeMachineApp" [ngValue]="os">{{os.osSM}} {{os.versionSM}}</option>
+          </select>
+        </mat-form-field>
+
+
+        
+        <mat-form-field width="10px" class="classeTel">
+          <mat-label>OS</mat-label>
+          <mat-select [formControl]="osForm" multiple>
+<!--             <mat-select-trigger>
+              {{osForm.value?.[0] || ''}}
+              <span *ngIf="(osForm.value?.length || 0) > 1">
+                (+{{(osForm.value?.length || 0) - 1}} {{osForm.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+ -->            <mat-option *ngFor="let os of osList" [value]="os">{{os}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <mat-form-field width="10px" class="classeTel" *ngIf="selectedService=='IAAS'">
+          <mat-label>RAM</mat-label>
+          <input matInput formControlName="ram_Form">
+          <mat-error> RAM est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>memory</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field width="10px" class="classeTel" *ngIf="selectedService=='IAAS'">
+          <mat-label>CPU</mat-label>
+          <input matInput formControlName="cpu_Form">
+          <mat-error> CPU est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>memory</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field width="10px" class="classeTel" *ngIf="selectedService=='IAAS'">
+          <mat-label>Disque</mat-label>
+          <input matInput formControlName="disqueForm">
+          <mat-error> Disque est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>sd_storage</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field width="10px" class="classeTel"  *ngIf="selectedService=='SAAS'">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nomSer">
+          <mat-error> Nom est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>local_laundry_service</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field width="10px" class="classeTel" *ngIf="selectedService=='PAAS'">
+          <mat-label>version</mat-label>
+          <input matInput formControlName="versionForm">
+          <mat-error> version est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>number</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field width="10px" class="classeTel" *ngIf="selectedService=='SAAS'">
+          <mat-label>Serveur</mat-label>
+          <mat-select [formControl]="serveurForm" multiple>
+<!--             <mat-select-trigger>
+              {{osForm.value?.[0] || ''}}
+              <span *ngIf="(osForm.value?.length || 0) > 1">
+                (+{{(osForm.value?.length || 0) - 1}} {{osForm.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+ -->            <mat-option *ngFor="let server of serveurList" [value]="server">{{server}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+        <button mat-raised-button (click)="AjouterDemandeClient()">
+          <mat-icon>save</mat-icon> Enregistrer
+        </button>
+
+
+      </div>
+
+
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+</form>

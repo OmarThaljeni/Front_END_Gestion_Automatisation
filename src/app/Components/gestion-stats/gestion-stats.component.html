@@ -1,0 +1,15 @@
+<h1 style="color:#3F51B5"> <strong>Quelques statistiques</strong> </h1>
+
+
+<div style="display: block;" *ngIf="barChartData">
+  <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>
+
+

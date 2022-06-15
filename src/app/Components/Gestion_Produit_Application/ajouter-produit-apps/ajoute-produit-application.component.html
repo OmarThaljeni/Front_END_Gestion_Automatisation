@@ -1,0 +1,47 @@
+<form [formGroup]="form" class="normal-form">
+
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>Création d'un produit application</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" (click)="onClose()" mat-stroked-button tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+
+    <mat-grid-tile class="matg1" [colspan]="2" [rowspan]="1">
+      <div class="modal" style="font-size: 16px">
+
+        <mat-form-field class="classeType">
+          <mat-label>Nom produit application</mat-label>
+          <input matInput formControlName="nomAPP">
+          <mat-error> Nom produit est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>settings_applications</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="classeType">
+          <mat-label>Version produit application</mat-label>
+          <input matInput formControlName="versionAPP" type="number">
+          <mat-error> versionPFA est invalide</mat-error>
+          <mat-icon class="maticon" matSuffix>number</mat-icon>
+        </mat-form-field>
+       
+
+        <button mat-raised-button (click)="AjouterPApps()">
+          <mat-icon>save</mat-icon> Enregistrer
+        </button>
+
+      </div>
+
+
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+</form>

@@ -1,0 +1,78 @@
+<form [formGroup]="form" class="normal-form">  
+
+  <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+    <span>modification d'un systéme</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close"(click)="onClose()" mat-stroked-button  tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <br>
+
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+
+    <mat-grid-tile class="matg1"[colspan]="2" [rowspan]="2" >
+      <div class="modal" style="font-size: 14px">
+      <mat-form-field class="className">
+        <mat-label>OS</mat-label>
+        <input matInput formControlName="osSM">
+        <mat-error> osSM est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>laptop</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field class="classPrenom">
+        <mat-label>Version</mat-label>
+        <input matInput formControlName="versionSM">
+        <mat-error> Version est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>laptop</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="classEmail">
+        <mat-label>Adresse IP</mat-label>
+        <input matInput formControlName="adresseIPSM">
+        <mat-error> Adresse IP est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>home</mat-icon>
+      </mat-form-field>
+
+
+      <mat-form-field class="classPrenom">
+        <mat-label>RAM</mat-label>
+        <input matInput formControlName="ramSM">
+        <mat-error> RAM est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>memory</mat-icon>
+      </mat-form-field>
+
+
+      
+      <mat-form-field class="classEmail">
+        <mat-label>CPU</mat-label>
+        <input matInput formControlName="cpuSM">
+        <mat-error> CPU est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>memory</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="classPrenom">
+        <mat-label>Disque</mat-label>
+        <input matInput formControlName="disqueSM">
+        <mat-error> Disque est invalide</mat-error>
+        <mat-icon class="maticon"  matSuffix>memory</mat-icon>
+      </mat-form-field>
+      
+      
+
+
+      <button mat-raised-button (click)="ModifierSM()">
+        <mat-icon>save</mat-icon> Enregistrer
+      </button>
+      
+      
+      </div>
+
+  
+
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+
+  </form>
